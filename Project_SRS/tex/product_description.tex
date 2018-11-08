@@ -4,7 +4,18 @@ This section provides a description of your product and defines it's primary fea
 What the product does and does not do. Specify in words what it looks like, referring to a conceptual diagram/graphic (Figure X).  Define the principle parts/components of the product. Specify the elements in the diagram/graphic that are part(s) of this product as well as any associated external elements (e.g., the Internet, an external web server, a GPS satellite, etc.)
 
 \subsection{External Inputs \& Outputs}
-Describe critical external data flows. What does your product require/expect to receive from end users or external systems (inputs), and what is expected to be created by your product for consumption by end users or external systems (outputs)? In other words, specify here all data/information to flow into and out of your systems. A table works best here, with rows for each critical data element, and columns for name, description and use.
+\begin{table}[h]
+\resizebox{\textwidth}{!}{
+\begin{tabular}{|l|l|l|l|}
+\hline
+ \textbf{Input/Output} & \textbf{Name} & \textbf{Description} & \textbf{Use} \\ \hline
+ Input & Power Switch & simple 2-way switch & powering on system \\ \hline
+ Input  & Volume/Intensity Knob & potentiometer & adjusting intensity of music \\ \hline
+ Output  & Pre-Amp & audio amplifier & amplifying original signal source \\ \hline
+ Output  & Filters & low, band, and high pass filters & filter signal  \\ \hline
+ Output & Bass Shakers/Speakers & tactile transducers and vibrating motors & provide vibrating sensation to vest \\ \hline
+\end{tabular}}
+\end{table}
 
 \subsection{Product Interfaces}
 Specify what all operational (visible) interfaces look like to your end-user, administrator, maintainer, etc. Show sample/mocked-up screen shots, graphics of buttons, panels, etc. Refer to the critical external inputs and outputs described in the paragraph above.
