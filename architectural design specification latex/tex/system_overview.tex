@@ -1,5 +1,4 @@
-This section should describe the overall structure of your software system. Think of it as the strategy for how you will build the system. An architectural "layer" is the top-level logical view, or an abstraction, of your design. Layers should be composed of related elements of similar capabilities, and should be highly independent of other layers, but should have very clearly defined interfaces and interactions with other layers. Each layer should be identified individually and should be unique as to its function and purpose within the system. This section should also contain the high-level block diagram of the layers, as shown in the example below, as well as detailed descriptions of the functions of each layer.
-
+The overall architecture of the sound vest has three major layers: Music Player, Music Filter, and Music Amplifier/Speakers. Starting with the first layer, Music Player, each layer interacts directly with the layer above and below it.
 \begin{figure}[h!]
 	\centering
  	\includegraphics[width=0.60\textwidth]{images/layers}
@@ -7,10 +6,10 @@ This section should describe the overall structure of your software system. Thin
 \end{figure}
 
 \subsection{Music Player Description}
-Each layer should be described separately in detail. Descriptions should include the features, functions, critical interfaces and interactions of the layer. The description should clearly define the services that the layer provides. Also include any conventions that your team will use in describing the structure: naming conventions for layers, subsystems, modules, and data flows; interface specifications; how layers and subsystems are defined; etc. 
+The very first layer is responsible for producing the music. A website, seen and interacting with the raspberry pi, will play the music. Then, the music will be output through the raspberry pi's audio jack to the next layer. 
 
 \subsection{Music Filter Description}
-Each layer should be described separately in detail. Descriptions should include the features, functions, critical interfaces and interactions of the layer. The description should clearly define the services that the layer provides. Also include any conventions that your team will use in describing the structure: naming conventions for layers, subsystems, modules, and data flows; interface specifications; how layers and subsystems are defined; etc. 
+The second layer is where all the filtering happens. The music will first pass through a pre-amplifier which will amplify the signal to be heard through the speakers. Then the music will be separated by the different frequency ranges and sent to the next layer. 
 
 \subsection{Audio Amplification/Speakers Description}
-Each layer should be described separately in detail. Descriptions should include the features, functions, critical interfaces and interactions of the layer. The description should clearly define the services that the layer provides. Also include any conventions that your team will use in describing the structure: naming conventions for layers, subsystems, modules, and data flows; interface specifications; how layers and subsystems are defined; etc. 
+The last layer adjusts the intensity of the music to the users liking. Once the intensity is adjusted, the music will pass through the shakers on the different areas on the vest. 
