@@ -31,7 +31,7 @@ The website will make an API call out to the music player and receive a rest end
 \end{table}
 
 \subsection{Raspberry Pi}
-This section should be a general description of a particular subsystem for the given layer. For most subsystems, an extract of the architectural block diagram with data flows is useful. This should consist of the subsystem being described and those subsystems with which it communicates.
+The Raspberry Pi will act as the medium between the music player layer and the music filter layer. It receives and passes on any audio signals it receives. It also receives and passes on any relevant instructions from the website. The Raspberry Pi will be maintaining a WiFi connection with the website, while also receiving and sending audio signals.
 
 \begin{figure}[h!]
 	\centering
@@ -40,13 +40,12 @@ This section should be a general description of a particular subsystem for the g
 \end{figure}
 
 \subsubsection{Assumptions}
-Any assumptions made in the definition of the subsystem should be listed and described. Pay particular attention to assumptions concerning interfaces and interactions with other layers.
+We assume that a Raspberry Pi that meets our specifications is readily available. We also assume that the Raspberry Pi will be capable of maintaining a WiFi connection, and that it will be able to efficiently receive and pass on the music signals. Finally, we assume that, if any peripheral attachments for the Raspberry Pi are needed for our system, they will also be readily available.
 
 \subsubsection{Responsibilities}
-Each of the responsibilities/features/functions/services of the subsystem as identified in the architectural summary must be expanded to more detailed responsibilities. These responsibilities form the basis for the identification of the finer-grained responsibilities of the layer's internal subsystems. Clearly describe what each subsystem does.
+The Raspberry Pi is responsible for maintaining a connection to the website and the music player. It needs to maintain a Wifi connection with the website. It is also the responsibility of the Raspberry Pi to forward the music signals to the pre-amp. It must also take in and pass on any user-given changes in audio settings.
 
 \subsubsection{Subsystem Interfaces}
-Each of the inputs and outputs for the subsystem are defined here. Create a table with an entry for each labelled interface that connects to this subsystem. For each entry, describe any incoming and outgoing data elements will pass through this interface.
 
 \begin {table}[H]
 \caption {Subsystem interfaces} 
@@ -54,8 +53,8 @@ Each of the inputs and outputs for the subsystem are defined here. Create a tabl
     \begin{tabular}{ | p{1cm} | p{6cm} | p{3cm} | p{3cm} |}
     \hline
     ID & Description & Inputs & Outputs \\ \hline
-    \#xx & Description of the interface/bus & \pbox{3cm}{input 1 \\ input 2} & \pbox{3cm}{output 1}  \\ \hline
-    \#xx & Description of the interface/bus & \pbox{3cm}{N/A} & \pbox{3cm}{output 1}  \\ \hline
+    \#1 & WiFi Connection to Website & \pbox{3cm}{ Changes on website } & \pbox{3cm}{ Raspberry Pi sends changes to appropriate system }  \\ \hline
+    \#2 & Connection to the music player & \pbox{3cm}{ Music/audio signals } & \pbox{3cm}{ Music/audio signals sent to pre-amp }  \\ \hline
     \end{tabular}
 \end{center}
 \end{table}
