@@ -1,39 +1,64 @@
 In this section, the layer is described in terms of the hardware and software design. Specific implementation details, such as hardware components, programming languages, software dependencies, operating systems, etc. should be discussed. Any unnecessary items can be ommitted (for example, a pure software module without any specific hardware should not include a hardware subsection). The organization, titles, and content of the sections below can be modified as necessary for the project.
 
 \subsection{Layer Hardware}
-A description of any involved hardware components for the layer. For example, if each subsystem is a software process running on an embedded computer, discuss the specifics of that device here. Do not list a hardware component that only exists at the subsystem level (include it in the following sections).
+The Music Filter Layer has two major components: The circuit that filters the audio, and the Arduino board that converts the incoming music signal into voltages for the motors.
 
 \subsection{Layer Operating System}
-A description of any operating systems required by the layer.
+Since the Arduino is a micro-controller, it does not require any operating system to run. All code is put into the firmware of the device.
 
 \subsection{Layer Software Dependencies}
-A description of any software dependencies (libraries, frameworks, etc) required by the layer.
+This layer does not need any overlying software to run. It can run independent of software.
 
-\subsection{Subsystem 1}
-Descibe at a high level the purpose and basic design of this subsystem. Is it a piece of hardware, a class, a web service, or something else? Note that each of the subsystem items below are meant to be specific to that subystem and not a repeat of anything discussed above for the overall layer.
+\subsection{Subsystem 1: Music Filter}
+The Music filter circuit is built with many components that modify the incoming audio signal. It has four main parts: the virtual ground, pre-Amplifier, filters, and power amplifier. The schematic also shows other parts, but they provide no effect to the audio. 
 
 \begin{figure}[h!]
 	\centering
- 	\includegraphics[width=0.60\textwidth]{architectural design specification latex/images/subsystem2.png}
- \caption{Example subsystem description diagram}
+ 	\includegraphics[width=0.8\textwidth]{images/audio_sch}
+ \caption{Music Filter Schematic}
 \end{figure}
 
 \subsubsection{Subsystem Hardware}
-A description of any involved hardware components for the subsystem.
+The four main parts to this subsystem are the virtual ground, pre-amplifier, filters, and power-amplifier.
 
 \subsubsection{Subsystem Operating System}
-A description of any operating systems required by the subsystem.
+No operating system is needed in this subsystem.
 
 \subsubsection{Subsystem Software Dependencies}
-A description of any software dependencies (libraries, frameworks, design software for mechanical parts or circuits, etc) required by the subsystem.
+No software dependencies are needed in this subsystem.
 
 \subsubsection{Subsystem Programming Languages}
-A description of any programming languages used by the subsystem.
+No programming languages are needed in this subsystem.
 
 \subsubsection{Subsystem Data Structures}
-A description of any classes or other data structures that are worth discussing for the subsystem. For example, data being transmitted from a microcontroller to a PC via USB should be first be assembled into packets. What is the structure of the packets?
+Audio is being sent from the raspberry pi to the filtering circuit through a 3.5mm audio jack. Signal is weak and is first boosted by the pre-amplifier to get the signal to line level. After the signal is filtered into a low, mid, and high range, it passes through a power amplifier that is able to boost the signal even more for the tactile transducer.
 
 \subsubsection{Subsystem Data Processing}
-A description of any algorithms or processing strategies that are worth discussing for the subsystem. If you are implementing a well-known algorithm, list it. If it is something unique to this project, discuss it in greater detail.
+The main portion of the circuit is the filtering of the audio. Audio is separated into a low, mid, and high range of frequencies and then sent to its corresponding outlet. Low frequencies will pass through a power amplifier and then into a speaker capable of producing low frequency rumbles. Mid and high range frequencies are passed on to the Arduino to be converted to voltages for the motors in the next layer. 
 
+\subsection{Subsystem 2: Arduino}
+The Arduino Uno micro-controller accepts the filtered signal from the circuit and converts the frequency to voltage in real time.
 
+\begin{figure}[h!]
+	\centering
+ 	\includegraphics[width=0.8\textwidth]{images/subsystem2}
+ \caption{Music Filter Layer Subsystem}
+\end{figure}
+
+\subsubsection{Subsystem Hardware}
+The only hardware used are the Arduino Uno micro-controller, copper wires, and vibrating mini motors discs.
+
+\subsubsection{Subsystem Operating System}
+Since the Arduino is a micro-controller, it does not require any operating system to run. All code is put into the firmware of the device.
+
+\subsubsection{Subsystem Software Dependencies}
+The Arduino Uno requires an open-source Arduino Software (IDE) to successfully upload code into the firmware.
+
+\subsubsection{Subsystem Programming Languages}
+The arduino can run complied C/C++ code along with libraries.
+
+\subsubsection{Subsystem Data Structures}
+Audio is being sent from the raspberry pi to the filtering circuit through a 3.5mm audio jack. Signal is then sent directly to the Arduino Uno.
+
+\subsubsection{Subsystem Data Processing}
+The main portion of the circuit is the filtering of the audio. Audio is separated into a low, mid, and high range of frequencies and then sent to its corresponding outlet. Low frequencies will pass through a power amplifier and then into a speaker capable of producing low frequency rumbles. Mid and high range frequencies are passed on to the Arduino to be converted to voltages for the motors in the next layer. 
