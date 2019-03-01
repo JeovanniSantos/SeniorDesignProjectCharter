@@ -1,16 +1,14 @@
-In this section, the layer is described in terms of the hardware and software design. Specific implementation details, such as hardware components, programming languages, software dependencies, operating systems, etc. should be discussed. Any unnecessary items can be ommitted (for example, a pure software module without any specific hardware should not include a hardware subsection). The organization, titles, and content of the sections below can be modified as necessary for the project.
-
 \subsection{Layer Hardware}
-A description of any involved hardware components for the layer. For example, if each subsystem is a software process running on an embedded computer, discuss the specifics of that device here. Do not list a hardware component that only exists at the subsystem level (include it in the following sections).
+The music amplification layer hardware consists of the Arduino Uno and the 6 haptic motor controllers.
 
 \subsection{Layer Operating System}
-A description of any operating systems required by the layer.
+As previously mentioned, the code for mapping the soundwaves/vibrations to the haptic motors will be embedded into the firmware of the Arduino Uno, so no other operating system should be necessary.
 
 \subsection{Layer Software Dependencies}
-A description of any software dependencies (libraries, frameworks, etc) required by the layer.
+There are drivers available for download with the haptic motors (from the website they were purchased from), which are needed to properly control output to the motors.
 
 \subsection{Subsystem 1}
-Descibe at a high level the purpose and basic design of this subsystem. Is it a piece of hardware, a class, a web service, or something else? Note that each of the subsystem items below are meant to be specific to that subystem and not a repeat of anything discussed above for the overall layer.
+This subsystem consists of the motors connecting with the Arduino Uno.
 
 \begin{figure}[h!]
 	\centering
@@ -19,21 +17,21 @@ Descibe at a high level the purpose and basic design of this subsystem. Is it a 
 \end{figure}
 
 \subsubsection{Subsystem Hardware}
-A description of any involved hardware components for the subsystem.
+The hardware for this subsystem is the 6 haptic motor controllers, the Arduino Uno, and any required wiring. The motors will be embedded within the vest.
 
 \subsubsection{Subsystem Operating System}
-A description of any operating systems required by the subsystem.
+No operating system is needed.
 
 \subsubsection{Subsystem Software Dependencies}
-A description of any software dependencies (libraries, frameworks, design software for mechanical parts or circuits, etc) required by the subsystem.
+There are drivers that may need to be installed onto the Arduino Uno in order to properly control the haptic motors.
 
 \subsubsection{Subsystem Programming Languages}
-A description of any programming languages used by the subsystem.
+The Arduino Uno code provided by the motor sellers is in Python.
 
 \subsubsection{Subsystem Data Structures}
-A description of any classes or other data structures that are worth discussing for the subsystem. For example, data being transmitted from a microcontroller to a PC via USB should be first be assembled into packets. What is the structure of the packets?
+After being filtered, the signals are received by the Arduino and are then converted to voltages, depending on the type of signal (lows/mids/highs), and within a range of 2V - 5V.
 
 \subsubsection{Subsystem Data Processing}
-A description of any algorithms or processing strategies that are worth discussing for the subsystem. If you are implementing a well-known algorithm, list it. If it is something unique to this project, discuss it in greater detail.
+The voltages are mapped to the respective motor (low/mid/high). Higher voltages are assigned to the upper two motors, mid-range voltages are assigned to the middle two motors, and lower-range voltages are assigned to the lower 2 motors. 
 
 
